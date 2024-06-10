@@ -21,7 +21,6 @@ final class ContainerView: UIView {
     
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
-        heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         layer.cornerRadius = 10
         layer.shadowRadius = 4

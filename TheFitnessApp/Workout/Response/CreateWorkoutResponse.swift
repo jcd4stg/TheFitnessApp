@@ -5,4 +5,6 @@
 //  Created by lynnguyen on 26/05/2024.
 //
 
-import Foundation
+struct CreateWorkoutResponse {
+    let workout: WorkoutModel
+}

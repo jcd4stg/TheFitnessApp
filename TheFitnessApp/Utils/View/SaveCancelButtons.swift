@@ -7,7 +7,9 @@
 
 import UIKit
 
-final class SaveCancelButton: UIView {
+final class SaveCancelButtons: UIView {
+    weak var delegate: SaveCancelButtonsDelegate?
+    
     private let stackView = UIStackView()
     private let cancelButton = UIButton()
     private let saveButton = UIButton()
@@ -20,6 +22,8 @@ final class SaveCancelButton: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Private
     
     private func setupView() {
         setupStackView()
@@ -45,11 +49,35 @@ final class SaveCancelButton: UIView {
         stackView.addArrangedSubview(cancelButton)
         cancelButton.setTitle("Cancel", for: .normal)
         cancelButton.setTitleColor(.customRed, for: .normal)
+        cancelButton.titleLabel?.font = .boldSystemFont(ofSize: 26)
+        cancelButton.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
     }
     
     private func setupSaveButton() {
         stackView.addArrangedSubview(saveButton)
         saveButton.setTitle("Save", for: .normal)
         saveButton.setTitleColor(.customGreen, for: .normal)
+        saveButton.titleLabel?.font = .boldSystemFont(ofSize: 26)
+        saveButton.addTarget(self, action: #selector(saveAction), for: .touchUpInside)
+
     }
+    
+    // MARK: - Action
+    
+    @objc private func cancelAction() {
+        if let delegate = delegate {
+            delegate.onCancel()
+        }
+    }
+    
+    @objc private func saveAction() {
+        if let delegate = delegate {
+            delegate.onSave()
+        }
+    }
+}
+
+protocol SaveCancelButtonsDelegate: AnyObject {
+    func onCancel()
+    func onSave()
 }

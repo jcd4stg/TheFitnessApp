@@ -8,6 +8,6 @@
 import Foundation
 
 struct UpdateWorkoutRequest {
-    let id: Int
-    let title: String
+    let id: Int64
+    let newTitle: String
 }

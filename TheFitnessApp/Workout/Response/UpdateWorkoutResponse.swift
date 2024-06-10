@@ -5,4 +5,6 @@
 //  Created by lynnguyen on 30/05/2024.
 //
 
-import Foundation
+struct UpdateWorkoutResponse {
+    let title: String
+}
